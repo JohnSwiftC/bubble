@@ -6,6 +6,14 @@ const Quote = (props) => {
                 <span className="text-4xl text-black font-serif italic">"</span>
                 <span className="text-3xl text-black font-serif italic">{props.text}</span>
                 <span className="text-4xl text-black font-serif italic">"</span>
+                <div className="flex flex-row justify-between">
+                    <p className="text-black italic text-sm">
+                        -{props.name}
+                    </p>
+                    <p className="text-black italic text-sm">
+                        {props.likes} likes
+                    </p>
+                </div>
             </div>
         </>
     )
