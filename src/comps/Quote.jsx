@@ -1,12 +1,23 @@
 import { useState } from 'react'
 
 const Quote = ({ name = "Anonymous", likes=0, text}) => {
+    const [likeCount, setLikeCount] = useState(likes);
     const [liked, setLiked] = useState(false);
     const [scale, setScale] = useState(100);
 
     const onClick = () => {
-        if (liked) setLiked(false);
-        if (!liked) setLiked(true);
+        if (liked) {
+            setLiked(false);
+            setLikeCount(likeCount - 1);
+
+            // Add network handling later
+        };
+        if (!liked) {
+            setLiked(true);
+            setLikeCount(likeCount + 1);
+
+            // You know the drill :)
+        }
 
         const timeout = setTimeout(() => {
 
@@ -27,7 +38,7 @@ const Quote = ({ name = "Anonymous", likes=0, text}) => {
                         -{name}
                     </p>
                     <p className="text-black italic text-sm">
-                        {likes} likes
+                        {likeCount} likes
                     </p>
                 </div>
             </div>
