@@ -10,7 +10,7 @@ const Quote = (props) => {
     
     return (
         <>
-            <div className={`bg-white p-3 rounded-md grow-1 text-center drop-shadow-sm border border-3 border-solid ${liked ? "border-purple-400" : "border-gray-400"} hover:scale-107 transition`} onClick={onClick}>
+            <div className={`bg-white p-3 rounded-md grow-1 text-center drop-shadow-sm border border-3 border-solid ${liked ? "border-purple-400" : "border-gray-400"} hover:scale-107 hover:z-100 transition`} onClick={onClick}>
                 <span className="text-4xl text-black font-serif italic">"</span>
                 <span className="text-3xl text-black font-serif italic">{props.text}</span>
                 <span className="text-4xl text-black font-serif italic">"</span>
