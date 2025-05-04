@@ -9,7 +9,7 @@ function App() {
       <div className="w-screen bg-gradient-to-r from-red-500 to-orange-400 p-3">
         
         <div className="overflow-scroll flex flex-wrap gap-3">
-          <div className="text-center bg-gray-100 border border-gray-400 mb-3 p-3 rounded">
+          <div className="text-center bg-gray-100 border border-gray-400 mb-3 p-3 rounded mt-3">
             <p className="text-transparent bg-clip-text font-bold text-3xl bg-gradient-to-r from-red-500 to-orange-400">
               bubble
             </p>
