@@ -27,6 +27,11 @@ function App() {
           <Quote text="I don't like people from Bushwick" name="John" likes={12000}/>
 
         </div>
+
+        <div className="bg-white rounded h-2/18 mt-3">
+
+        </div>
+
       </div>
     </>
   )
