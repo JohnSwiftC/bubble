@@ -1,14 +1,34 @@
 import './App.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Quote from './comps/Quote'
 
 function App() {
 
   const [buttonScale, setButtonScale] = useState(100);
-
+  const [quoteText, setQuoteText] = useState("");
+  const [buttonText, setButtonText] = useState("Submit");
+  
+  // Will change text back from sent when using a new quote.
+  useEffect(() => {
+    if (quoteText.length > 0) {
+      setButtonText("Submit");
+    }
+  }, [quoteText])
   // Deal with submit button, not making another
   // component because im lazy
+
+  const quoteSubmitHandler = () => {
+    console.log(quoteText);
+    setQuoteText("");
+    setButtonText("Sent");
+
+    setButtonScale(buttonScale + 10);
+
+    const to = setTimeout(() => {
+        setButtonScale(buttonScale - 3);
+    }, 100);
+  }
 
   return (
     <>
@@ -36,14 +56,14 @@ function App() {
 
         <div className="rounded h-2/18 mt-3 flex flex-row gap-3">
           <div className="grow-1 rounded border border-3 border-gray-400 bg-white flex justify-center p-3">
-            <input className="bg-white text-black grow-1 outline-hidden text-2xl font-serif" placeholder="Your new quote..."/>
+            <input value={quoteText} onChange={(e) => {setQuoteText(e.target.value)}}className="bg-white text-black grow-1 outline-hidden text-2xl font-serif" placeholder="Your new quote..."/>
           </div>
-          <div className="aspect-3/2 bg-white border border-3 border-gray-400 rounded flex justify-center items-center transition"
+          <div onClick={quoteSubmitHandler} className="aspect-3/2 bg-white border border-3 border-gray-400 rounded flex justify-center items-center transition"
                 style={{ transform: `scale(${buttonScale/100})` }}
                 onMouseEnter={() => {setButtonScale(107)}}
                 onMouseLeave={() => {setButtonScale(100)}}>
             <p className="font-serif text-black text-xl italic">
-              Submit
+              {buttonText}
             </p>
           </div>
         </div>
