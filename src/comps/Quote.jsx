@@ -31,7 +31,7 @@ const Quote = ({ name = "Anonymous", likes=0, text}) => {
             <div className={`bg-white p-3 rounded-md grow-1 text-center drop-shadow-sm border border-3 border-solid ${liked ? "border-purple-400" : "border-gray-400"} hover:z-50 transition`} 
                 style={{ transform: `scale(${scale/100})` }}
                 onClick={onClick}
-                onMouseEnter={() => setScale(107)} // I manually handle hovering here so I can have full control over the scale for other animations
+                onMouseEnter={() => setScale(104)} // I manually handle hovering here so I can have full control over the scale for other animations
                 onMouseLeave={() => setScale(100)}>
                 <span className="text-4xl text-black font-serif italic">"</span>
                 <span className="text-3xl text-black font-serif italic">{text}</span>
