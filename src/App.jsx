@@ -28,8 +28,15 @@ function App() {
 
         </div>
 
-        <div className="bg-white rounded h-2/18 mt-3">
-
+        <div className="rounded h-2/18 mt-3 flex flex-row gap-3">
+          <div className="grow-1 rounded border border-3 border-gray-400 bg-white flex justify-center p-3">
+            <input className="bg-white text-black grow-1 outline-hidden text-2xl font-serif" placeholder="Your new quote..."/>
+          </div>
+          <div className="aspect-3/2 bg-white border border-3 border-gray-400 rounded flex justify-center items-center">
+            <p className="font-serif text-black text-xl italic">
+              Submit
+            </p>
+          </div>
         </div>
 
       </div>
