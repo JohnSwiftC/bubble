@@ -7,6 +7,7 @@ function App() {
 
   const [buttonScale, setButtonScale] = useState(100);
   const [quoteText, setQuoteText] = useState("");
+  const [nameText, setNameText] = useState("");
   const [buttonText, setButtonText] = useState("Submit");
   
   // Will change text back from sent when using a new quote.
@@ -21,6 +22,7 @@ function App() {
   const quoteSubmitHandler = () => {
     console.log(quoteText);
     setQuoteText("");
+    setNameText("");
     setButtonText("Sent");
 
     setButtonScale(buttonScale + 10);
@@ -55,9 +57,14 @@ function App() {
         </div>
 
         <div className="rounded h-2/18 mt-3 flex flex-row gap-3">
-          <div className="grow-1 rounded border border-3 border-gray-400 bg-white flex justify-center p-3">
-            <input value={quoteText} onChange={(e) => {setQuoteText(e.target.value)}}className="bg-white text-black grow-1 outline-hidden text-2xl font-serif" placeholder="Your new quote..."/>
-          </div>
+         
+            <div className="grow-2 rounded border border-3 border-gray-400 bg-white flex justify-center p-3">
+              <input value={quoteText} onChange={(e) => {setQuoteText(e.target.value)}}className="w-0 bg-white text-black grow-1 outline-hidden text-2xl font-serif" placeholder="Your new quote..."/>
+            </div>
+            <div className="grow-1 rounded border border-3 border-gray-400 bg-white flex justify-center p-3">
+              <input value={nameText} onChange={(e) => {setNameText(e.target.value)}}className="w-0 bg-white text-black grow-1 outline-hidden text-xl font-serif" placeholder="Author..."/>
+            </div>
+    
           <div onClick={quoteSubmitHandler} className="aspect-3/2 bg-white border border-3 border-gray-400 rounded flex justify-center items-center transition"
                 style={{ transform: `scale(${buttonScale/100})` }}
                 onMouseEnter={() => {setButtonScale(107)}}
