@@ -20,6 +20,11 @@ const Quote = ({ name = "Anonymous", likes=0, text}) => {
             setLiked(true);
             setLikeCount(likeCount + 1);
 
+            setScale(scale + 10);
+
+            const to = setTimeout(() => {
+                setScale(scale - 3);
+            }, 100);
 
             // You know the drill :)
         }
@@ -28,7 +33,7 @@ const Quote = ({ name = "Anonymous", likes=0, text}) => {
     
     return (
         <>
-            <div className={`bg-white p-3 rounded-md grow-1 text-center drop-shadow-sm border border-3 border-solid ${liked ? "border-purple-400" : "border-gray-400"} hover:z-50 transition`} 
+            <div className={`bg-white p-3 rounded-md grow-1 text-center drop-shadow-sm border border-3 border-solid ${liked ? "border-purple-500" : "border-gray-400"} hover:z-50 transition`} 
                 style={{ transform: `scale(1, ${scale/100})` }}
                 onClick={onClick}
                 onMouseEnter={() => setScale(107)} // I manually handle hovering here so I can have full control over the scale for other animations
