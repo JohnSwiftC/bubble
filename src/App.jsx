@@ -9,17 +9,23 @@ function App() {
   const [quoteText, setQuoteText] = useState("");
   const [nameText, setNameText] = useState("");
   const [buttonText, setButtonText] = useState("Submit");
+
+  const [sendable, setSendable] = useState(false);
   
   // Will change text back from sent when using a new quote.
   useEffect(() => {
     if (quoteText.length > 0) {
       setButtonText("Submit");
+      setSendable(true);
+    } else {
+      setSendable(false);
     }
   }, [quoteText])
   // Deal with submit button, not making another
   // component because im lazy
 
   const quoteSubmitHandler = () => {
+    if (!sendable) return;
     console.log(quoteText);
     setQuoteText("");
     setNameText("");
@@ -65,7 +71,7 @@ function App() {
               <input value={nameText} onChange={(e) => {setNameText(e.target.value)}}className="w-0 bg-white text-black grow-1 outline-hidden text-xl font-serif" placeholder="Author..."/>
             </div>
     
-          <div onClick={quoteSubmitHandler} className="aspect-3/2 bg-white border border-3 border-gray-400 rounded flex justify-center items-center transition"
+          <div onClick={quoteSubmitHandler} className={`aspect-3/2 border border-3 border-gray-400 ${sendable ? "bg-white" : "bg-gray-400"} rounded flex justify-center items-center transition`}
                 style={{ transform: `scale(${buttonScale/100})` }}
                 onMouseEnter={() => {setButtonScale(107)}}
                 onMouseLeave={() => {setButtonScale(100)}}>
