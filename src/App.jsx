@@ -9,8 +9,27 @@ function App() {
   const [quoteText, setQuoteText] = useState("");
   const [nameText, setNameText] = useState("");
   const [buttonText, setButtonText] = useState("Submit");
-
+  const [quotes, setQuotes] = useState([]);
+  const [error, setError] = useState(null);
   const [sendable, setSendable] = useState(false);
+
+  // Make our api request
+  useEffect(() => {
+    const fetchQuotes = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/1');
+        if (!response.ok) {
+          throw new Error("My API is garbage");
+        }
+        const json = await response.json();
+        setQuotes(json);
+      } catch (error) {
+        setError(error);
+      }
+    };
+
+    fetchQuotes();
+  }, []);
   
   // Will change text back from sent when using a new quote.
   useEffect(() => {
@@ -48,17 +67,10 @@ function App() {
               bubble
             </p>
           </div>
-          <Quote text="I don't like people from Bushwick" name="John" likes={12000}/>
-          <Quote text="I love Gus" name="John" likes={0}/>
-          <Quote text="I love Gus"/>
-          <Quote text="I love Gus"/>
-          <Quote text="I love Gus"/>
-          <Quote text="I don't like people from Bushwick" name="John" likes={12000}/>
-          <Quote text="I don't like people from Bushwick" name="John" likes={12000}/>
-          <Quote text="I don't like people from Bushwick" name="John" likes={12000}/>
-          <Quote text="I don't like people from Bushwick" name="John" likes={12000}/>
-          <Quote text="I don't like people from Bushwick" name="John" likes={12000}/>
-          <Quote text="I don't like people from Bushwick" name="John" likes={12000}/>
+          
+          {quotes.map(quote => (
+            <Quote text={quote.text} name={quote.author} likes={quote.likes} />
+          ))}
 
         </div>
 
