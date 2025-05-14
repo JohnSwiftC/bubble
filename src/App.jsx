@@ -45,7 +45,33 @@ function App() {
 
   const quoteSubmitHandler = () => {
     if (!sendable) return;
-    console.log(quoteText);
+
+    let data = {
+      id: 0,
+      text: quoteText,
+      author: nameText,
+      likes: 0
+    };
+
+    fetch('http://localhost:8000/add_quote', {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error making post request');
+        }
+
+        return response.json();
+      })
+      .then((x) => {})
+      .catch(error => {
+        console.error("Error:", error);
+      });
+
     setQuoteText("");
     setNameText("");
     setButtonText("Sent");
@@ -69,7 +95,7 @@ function App() {
           </div>
           
           {quotes.map(quote => (
-            <Quote text={quote.text} name={quote.author} likes={quote.likes} />
+            <Quote id={quote.id} text={quote.text} name={quote.author} likes={quote.likes} />
           ))}
 
         </div>

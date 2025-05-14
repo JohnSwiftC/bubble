@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 
 
-const Quote = ({ name = "Anonymous", likes=0, text}) => {
+const Quote = ({ id, name = "Anonymous", likes=0, text}) => {
     const [likeCount, setLikeCount] = useState(likes);
     const [liked, setLiked] = useState(false);
     const [scale, setScale] = useState(100);
@@ -10,17 +10,30 @@ const Quote = ({ name = "Anonymous", likes=0, text}) => {
 
 
     const onClick = () => {
-        if (liked) {
-            setLiked(false);
-            setLikeCount(likeCount - 1);
-
-            // Add network handling later
-        };
         if (!liked) {
             setLiked(true);
             setLikeCount(likeCount + 1);
 
             setScale(scale + 10);
+
+            fetch('http://localhost:8000/add_like', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(id),
+              })
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error('Error making post request');
+                  }
+          
+                  return response.json();
+                })
+                .then((x) => {})
+                .catch(error => {
+                  console.error("Error:", error);
+                });
 
             const to = setTimeout(() => {
                 setScale(scale - 3);
