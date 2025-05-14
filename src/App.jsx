@@ -17,7 +17,7 @@ function App() {
   useEffect(() => {
     const fetchQuotes = async () => {
       try {
-        const response = await fetch('http://localhost:8000/1');
+        const response = await fetch('https://api.bubbll.io/1');
         if (!response.ok) {
           throw new Error("My API is garbage");
         }
@@ -53,7 +53,7 @@ function App() {
       likes: 0
     };
 
-    fetch('http://localhost:8000/add_quote', {
+    fetch('https://api.bubbll.io/add_quote', {
       method: 'POST',
       headers: {
       'Content-Type': 'application/json'
