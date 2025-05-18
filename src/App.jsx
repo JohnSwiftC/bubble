@@ -12,6 +12,7 @@ function App() {
   const [quotes, setQuotes] = useState([]);
   const [error, setError] = useState(null);
   const [sendable, setSendable] = useState(false);
+  const [showQuoteMenu, setShowQuoteMenu] = useState(false);
 
   // Make our api request
   useEffect(() => {
@@ -78,6 +79,8 @@ function App() {
 
     setButtonScale(buttonScale + 10);
 
+    setShowQuoteMenu(false);
+
     const to = setTimeout(() => {
         setButtonScale(buttonScale - 3);
     }, 100);
@@ -87,10 +90,50 @@ function App() {
     <>
       <div className="fixed inset-0 w-screen bg-gradient-to-r from-red-500 to-orange-400 p-3">
         
-        <div className="[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] h-7/8 overflow-auto flex flex-wrap gap-3 rounded">
+        {showQuoteMenu && (
+          <>
+            <div className="absolute w-full h-full flex justify-center items-center">
+              <div className="rounded border border-3 p-3 bg-white text-black w-6/8 h-6/8 flex flex-col gap-3">
+
+                <div className="rounded bg-red-500 hover:scale-102 transition"
+                      onClick={() => {setShowQuoteMenu(false)}}>
+                  <p className="text-black text-center font-serif italic">
+                    Close
+                  </p>
+                </div>
+
+                <div className="grow-2 rounded border border-3 border-gray-400 bg-white flex justify-center p-3">
+                  <input value={quoteText} onChange={(e) => {setQuoteText(e.target.value)}}className="w-0 bg-white text-black grow-1 outline-hidden text-2xl font-serif" placeholder="Your new quote..."/>
+                </div>
+                <div className="grow-1 rounded border border-3 border-gray-400 bg-white flex justify-center p-3">
+                  <input value={nameText} onChange={(e) => {setNameText(e.target.value)}}className="w-0 bg-white text-black grow-1 outline-hidden text-xl font-serif" placeholder="Author..."/>
+                </div>
+        
+                <div onClick={quoteSubmitHandler} className={`border border-3 border-gray-400 ${sendable ? "bg-white" : "bg-gray-400"} rounded flex justify-center items-center transition`}
+                    style={{ transform: `scale(${buttonScale/100})` }}
+                    onMouseEnter={() => {setButtonScale(102)}}
+                    onMouseLeave={() => {setButtonScale(100)}}>
+                <p className="font-serif text-black text-xl italic">
+                  {buttonText}
+                </p>
+                </div>
+              </div>
+
+            </div>
+          </>
+        )}
+
+        <div className="[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-auto flex flex-wrap gap-3 rounded">
           <div className="text-center bg-gray-100 border border-gray-400 mb-3 p-3 rounded mt-3">
             <p className="text-transparent bg-clip-text font-bold text-3xl bg-gradient-to-r from-red-500 to-orange-400">
               bubbll
+            </p>
+          </div>
+
+          <div className="text-center bg-gray-100 border border-gray-400 mb-3 p-3 rounded mt-3 hover:scale-107 transition"
+                onClick={() => {setShowQuoteMenu(true)}}>
+            <p className="text-transparent bg-clip-text font-bold text-3xl bg-gradient-to-r from-red-500 to-orange-400">
+              +
             </p>
           </div>
           
@@ -98,25 +141,6 @@ function App() {
             <Quote id={quote.id} text={quote.text} name={quote.author} likes={quote.likes} />
           ))}
 
-        </div>
-
-        <div className="rounded h-2/18 mt-3 flex flex-row gap-3">
-         
-            <div className="grow-2 rounded border border-3 border-gray-400 bg-white flex justify-center p-3">
-              <input value={quoteText} onChange={(e) => {setQuoteText(e.target.value)}}className="w-0 bg-white text-black grow-1 outline-hidden text-2xl font-serif" placeholder="Your new quote..."/>
-            </div>
-            <div className="grow-1 rounded border border-3 border-gray-400 bg-white flex justify-center p-3">
-              <input value={nameText} onChange={(e) => {setNameText(e.target.value)}}className="w-0 bg-white text-black grow-1 outline-hidden text-xl font-serif" placeholder="Author..."/>
-            </div>
-    
-          <div onClick={quoteSubmitHandler} className={`aspect-3/2 border border-3 border-gray-400 ${sendable ? "bg-white" : "bg-gray-400"} rounded flex justify-center items-center transition`}
-                style={{ transform: `scale(${buttonScale/100})` }}
-                onMouseEnter={() => {setButtonScale(107)}}
-                onMouseLeave={() => {setButtonScale(100)}}>
-            <p className="font-serif text-black text-xl italic">
-              {buttonText}
-            </p>
-          </div>
         </div>
 
       </div>
