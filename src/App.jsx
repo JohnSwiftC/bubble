@@ -93,7 +93,7 @@ function App() {
         
         {showQuoteMenu && (
           <>
-            <div className="absolute w-full h-full flex justify-center items-center">
+            <div className="absolute w-full h-full flex justify-center items-center z-50">
               <div className="rounded border border-3 p-3 bg-white text-black w-6/8 h-6/8 flex flex-col gap-3">
 
                 <div className="rounded bg-red-500 hover:scale-102 transition"
@@ -124,7 +124,7 @@ function App() {
           </>
         )}
 
-        <div className="[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] h-full overflow-scroll flex flex-wrap gap-3 rounded">
+        <div className="[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:1] h-full overflow-scroll flex flex-wrap gap-3 rounded">
           <div className="text-center bg-gray-100 border border-gray-400 mb-3 p-3 rounded mt-3">
             <p className="text-transparent bg-clip-text font-bold text-3xl bg-gradient-to-r from-red-500 to-orange-400">
               bubbll
