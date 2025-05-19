@@ -16,9 +16,10 @@ function App() {
 
   // Make our api request
   useEffect(() => {
+    console.log(import.meta.env.PROD);
     const fetchQuotes = async () => {
       try {
-        const response = await fetch('https://api.bubbll.io/1');
+        const response = await fetch(`${import.meta.env.VITE_BACKEND}/1`);
         if (!response.ok) {
           throw new Error("My API is garbage");
         }
@@ -54,7 +55,7 @@ function App() {
       likes: 0
     };
 
-    fetch('https://api.bubbll.io/add_quote', {
+    fetch(`${import.meta.env.VITE_BACKEND}/add_quote`, {
       method: 'POST',
       headers: {
       'Content-Type': 'application/json'
@@ -123,7 +124,7 @@ function App() {
           </>
         )}
 
-        <div className="[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] overflow-auto flex flex-wrap gap-3 rounded">
+        <div className="[&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] h-full overflow-scroll flex flex-wrap gap-3 rounded">
           <div className="text-center bg-gray-100 border border-gray-400 mb-3 p-3 rounded mt-3">
             <p className="text-transparent bg-clip-text font-bold text-3xl bg-gradient-to-r from-red-500 to-orange-400">
               bubbll

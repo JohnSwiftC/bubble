@@ -16,7 +16,7 @@ const Quote = ({ id, name = "Anonymous", likes=0, text}) => {
 
             setScale(scale + 10);
 
-            fetch('https://api.bubbll.io/add_like', {
+            fetch(`${import.meta.env.VITE_BACKEND}/add_like`, {
                 method: 'POST',
                 headers: {
                 'Content-Type': 'application/json'
