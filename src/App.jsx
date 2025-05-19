@@ -144,7 +144,7 @@ function App() {
           ))}
 
           <div className='flex flex-row gap-3 justify-center items-center w-screen'>
-            <div className="text-center bg-gray-100 border border-gray-400 mb-3 p-3 rounded mt-3">
+            <div className="text-center bg-gray-100 border border-gray-400 mb-3 p-3 rounded mt-3 hover:scale-107 transition">
               <p className="text-transparent bg-clip-text font-bold text-3xl bg-gradient-to-r from-red-500 to-orange-400"
                     onClick={() => {
                       if (page != 0) {
@@ -161,7 +161,7 @@ function App() {
               </p>
             </div>
 
-            <div className="text-center bg-gray-100 border border-gray-400 mb-3 p-3 rounded mt-3"
+            <div className="text-center bg-gray-100 border border-gray-400 mb-3 p-3 rounded mt-3 hover:scale-107 transition"
                   onClick={() => {setPage(page + 1)}}>
               <p className="text-transparent bg-clip-text font-bold text-3xl bg-gradient-to-r from-red-500 to-orange-400">
               →
