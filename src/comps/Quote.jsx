@@ -52,9 +52,7 @@ const Quote = ({ id, name = "Anonymous", likes=0, text}) => {
                 onMouseEnter={() => setScale(107)} // I manually handle hovering here so I can have full control over the scale for other animations
                 onMouseLeave={() => setScale(100)}>
                 <div>
-                    <span className="text-4xl text-black font-serif italic">"</span>
                     <span className="text-3xl text-black font-serif italic">{text}</span>
-                    <span className="text-4xl text-black font-serif italic">"</span>
                 </div>
                 <div className="flex flex-row justify-between">
                     <p className="text-black italic text-sm">
