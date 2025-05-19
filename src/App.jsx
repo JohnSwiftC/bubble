@@ -32,7 +32,7 @@ function App() {
     };
 
     fetchQuotes();
-  }, []);
+  }, [page]);
   
   // Will change text back from sent when using a new quote.
   useEffect(() => {
@@ -142,6 +142,26 @@ function App() {
           {quotes.map(quote => (
             <Quote id={quote.id} text={quote.text} name={quote.author} likes={quote.likes} />
           ))}
+
+          <div className='flex flex-row gap-3 justify-center items-center w-screen'>
+            <div className="text-center bg-gray-100 border border-gray-400 mb-3 p-3 rounded mt-3">
+              <p className="text-transparent bg-clip-text font-bold text-3xl bg-gradient-to-r from-red-500 to-orange-400">
+              ←
+              </p>
+            </div>
+
+            <div className="text-center bg-gray-100 border border-gray-400 mb-3 p-3 rounded mt-3">
+              <p className="text-transparent bg-clip-text font-bold text-3xl bg-gradient-to-r from-red-500 to-orange-400">
+                {page}
+              </p>
+            </div>
+
+            <div className="text-center bg-gray-100 border border-gray-400 mb-3 p-3 rounded mt-3">
+              <p className="text-transparent bg-clip-text font-bold text-3xl bg-gradient-to-r from-red-500 to-orange-400">
+              →
+              </p>
+            </div>
+          </div>
 
         </div>
 
