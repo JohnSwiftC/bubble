@@ -13,13 +13,14 @@ function App() {
   const [error, setError] = useState(null);
   const [sendable, setSendable] = useState(false);
   const [showQuoteMenu, setShowQuoteMenu] = useState(false);
+  const [page, setPage] = useState(1);
 
   // Make our api request
   useEffect(() => {
     console.log(import.meta.env.PROD);
     const fetchQuotes = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND}/1`);
+        const response = await fetch(`${import.meta.env.VITE_BACKEND}/${page}`);
         if (!response.ok) {
           throw new Error("My API is garbage");
         }
