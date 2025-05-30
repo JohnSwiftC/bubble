@@ -1,7 +1,8 @@
 import './App.css'
 import { useState, useEffect } from 'react';
 
-import Quote from './comps/Quote'
+import Quote from './comps/Quote';
+import Dropdown from 'react-bootstrap/Dropdown';
 
 function App() {
 
