@@ -5,6 +5,7 @@ import Quote from './comps/Quote'
 
 function App() {
 
+  // This amount of state is making me worried, should probably clean this up
   const [buttonScale, setButtonScale] = useState(100);
   const [quoteText, setQuoteText] = useState("");
   const [nameText, setNameText] = useState("");
@@ -14,13 +15,14 @@ function App() {
   const [sendable, setSendable] = useState(false);
   const [showQuoteMenu, setShowQuoteMenu] = useState(false);
   const [page, setPage] = useState(1);
+  const [ordering, setOrdering] = useState(1);
 
   // Make our api request
   useEffect(() => {
     console.log(import.meta.env.PROD);
     const fetchQuotes = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_BACKEND}/${page}`);
+        const response = await fetch(`${import.meta.env.VITE_BACKEND}/${page}/${ordering}`);
         if (!response.ok) {
           throw new Error("My API is garbage");
         }
